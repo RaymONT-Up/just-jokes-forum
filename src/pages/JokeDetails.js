@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Route, useParams } from "react-router-dom";
+import { Link, Route, useParams } from "react-router-dom";
 import Comments from "../components/comments/Comments";
 import HighlightedJoke from "../components/jokes/HighlightedJoke";
 import NotFound from "./NotFound";
@@ -16,7 +16,10 @@ const JokeDetails = () => {
   return (
     <Fragment>
       <HighlightedJoke text={joke.text} topic={joke.topic} />
-      <Route path="/jokes/:jokeId/comments">
+      <Route path={`/jokes/${params.jokeId}`} exact>
+        <Link to={`/jokes/${params.jokeId}/comments`}>Show comments</Link>
+      </Route>
+      <Route path={`/jokes/${params.jokeId}/comments`}>
         <Comments />
       </Route>
     </Fragment>
